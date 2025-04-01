@@ -17,7 +17,7 @@ job('Java Maven App DSL') {
         }
         shell('''
           echo "Entrega: Desplegando la aplicación" 
-          java -jar "%WORKSPACE%/Java Maven App DSL/target/my-app-1.0-SNAPSHOT.jar"
+          java -jar "%WORKSPACE%/target/my-app-1.0-SNAPSHOT.jar"
         ''')  
     }
     publishers {
