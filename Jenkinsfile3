@@ -22,6 +22,11 @@ pipeline {
             steps {
                 powershell 'mvn -B -DskipTests clean package'
             }
+            post {
+                success {
+                    archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+                }
+            }
         }
         stage('Test') {
             steps {
@@ -41,7 +46,12 @@ pipeline {
                 appmavenjenkins.push()
               }
             }  
-          }  
+          }
+        }
+        stage('Deploy') {
+            steps {
+                powershell './jenkins/scripts/deliver.sh'
+            }
         }
     }
 }
